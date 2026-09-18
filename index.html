@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Essência Gym | Suplementos para o seu treino</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <header class="cabecalho">
+        <div class="container">
+
+            <a href="index.html" class="marca-topo">
+                <img src="assets/logo-essencia-gym.png" alt="Logo Essência Gym">
+                <span class="marca-texto">
+                    <strong>ESSÊNCIA GYM</strong>
+                    <span>SUPLEMENTOS</span>
+                </span>
+            </a>
+
+            <nav>
+                <ul class="nav-topo">
+                    <li><a href="#vitrine" class="ativo">Loja</a></li>
+                    <li><a href="#whey" data-categoria="whey">Whey</a></li>
+                    <li><a href="#creatina" data-categoria="creatina">Creatina</a></li>
+                    <li><a href="#hipercalorico" data-categoria="hipercalorico">Hipercalórico</a></li>
+                    <li><a href="#diferenciais">Por que a gente</a></li>
+                </ul>
+            </nav>
+
+            <div class="acoes-topo">
+                <a href="login.html" class="link-conta">Entrar</a>
+
+                <button class="botao-carrinho" id="botao-abrir-carrinho" aria-label="Abrir carrinho">
+                    Carrinho
+                    <span class="contador-carrinho" id="contador-carrinho">0</span>
+                </button>
+
+                <button class="menu-mobile-botao" aria-label="Abrir menu">☰</button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="container">
+
+            <div class="hero-texto">
+                <span class="selo">DISCIPLINA · CONSTÂNCIA · RESULTADOS</span>
+
+                <h1>Combustível de verdade para quem não pula treino.</h1>
+
+                <p>
+                    Whey, creatina e hipercalórico selecionados para sustentar sua rotina
+                    de treino — sem enrolação, sem promessa vazia, só o que o seu corpo
+                    precisa para render na próxima série.
+                </p>
+
+                <div class="hero-acoes">
+                    <a href="#vitrine" class="botao-primario">Ver produtos</a>
+                    <a href="#diferenciais" class="botao-fantasma">Por que a Essência</a>
+                </div>
+
+                <div class="hero-linha-ouro"></div>
+            </div>
+
+            <div class="hero-imagem">
+                <img src="assets/logo-essencia-gym.png" alt="Essência Gym">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== FAIXA DE CONFIANÇA ===================== -->
+    <section class="faixa-confianca">
+        <div class="container">
+            <div class="item"><strong>+5 mil</strong>potes entregues</div>
+            <div class="item"><strong>100%</strong>testado em laboratório</div>
+            <div class="item"><strong>3x</strong>sem juros no cartão</div>
+            <div class="item"><strong>24h</strong>envio para todo o Brasil</div>
+        </div>
+    </section>
+
+    <!-- ===================== VITRINE ===================== -->
+    <section class="secao" id="vitrine">
+        <div class="container">
+
+            <div class="cabecalho-secao">
+                <div>
+                    <span class="selo">CATÁLOGO</span>
+                    <h2>Nossos suplementos</h2>
+                </div>
+                <p>Cada linha foi pensada para uma fase diferente do seu treino: ganho de força, recuperação ou volume.</p>
+            </div>
+
+            <div class="filtros-categoria">
+                <button class="filtro-botao ativo" data-filtro="todos">Todos</button>
+                <button class="filtro-botao" data-filtro="whey">Whey Protein</button>
+                <button class="filtro-botao" data-filtro="creatina">Creatina</button>
+                <button class="filtro-botao" data-filtro="hipercalorico">Hipercalórico</button>
+            </div>
+
+            <div class="grade-produtos" id="grade-produtos">
+                <!-- produtos inseridos via js/produtos.js -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== DIFERENCIAIS ===================== -->
+    <section class="diferenciais" id="diferenciais">
+        <div class="grade-diferenciais">
+
+            <div class="item-diferencial">
+                <span class="indice">QUALIDADE</span>
+                <h3>Fórmulas testadas</h3>
+                <p>Todos os lotes passam por análise laboratorial antes de chegar até você, sem misturas escondidas no rótulo.</p>
+            </div>
+
+            <div class="item-diferencial">
+                <span class="indice">ENTREGA</span>
+                <h3>Envio rápido</h3>
+                <p>Pedido feito até às 14h sai no mesmo dia. Rastreamento disponível assim que o pacote é despachado.</p>
+            </div>
+
+            <div class="item-diferencial">
+                <span class="indice">SUPORTE</span>
+                <h3>Atendimento real</h3>
+                <p>Dúvida sobre dosagem ou combinação de suplementos? Nosso time responde, sem robô de atendimento.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <footer class="rodape-site">
+        <div class="container">
+
+            <div class="grade-rodape">
+
+                <div class="coluna-rodape">
+                    <a href="index.html" class="marca-topo">
+                        <img src="assets/logo-essencia-gym.png" alt="Logo Essência Gym" style="height: 44px;">
+                        <span class="marca-texto">
+                            <strong>ESSÊNCIA GYM</strong>
+                            <span>SUPLEMENTOS</span>
+                        </span>
+                    </a>
+                    <p>Suplementos para quem treina com disciplina e constância, todos os dias da semana.</p>
+                </div>
+
+                <div class="coluna-rodape">
+                    <h4>LOJA</h4>
+                    <ul>
+                        <li><a href="#whey" data-categoria="whey">Whey Protein</a></li>
+                        <li><a href="#creatina" data-categoria="creatina">Creatina</a></li>
+                        <li><a href="#hipercalorico" data-categoria="hipercalorico">Hipercalórico</a></li>
+                    </ul>
+                </div>
+
+                <div class="coluna-rodape">
+                    <h4>CONTA</h4>
+                    <ul>
+                        <li><a href="login.html">Entrar</a></li>
+                        <li><a href="cadastro.html">Criar conta</a></li>
+                    </ul>
+                </div>
+
+                <div class="coluna-rodape">
+                    <h4>ATENDIMENTO</h4>
+                    <ul>
+                        <li><a href="mailto:contato@essenciagym.com.br">contato@essenciagym.com.br</a></li>
+                        <li><a href="tel:+5500000000000">(00) 00000-0000</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="base-rodape">
+                <span>© 2026 Essência Gym. Todos os direitos reservados.</span>
+                <span>CNPJ 00.000.000/0001-00</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ===================== CARRINHO LATERAL ===================== -->
+    <div class="fundo-carrinho" id="fundo-carrinho"></div>
+
+    <aside class="painel-carrinho" id="painel-carrinho">
+
+        <div class="cabecalho-carrinho">
+            <h2>Seu carrinho</h2>
+            <button class="fechar-carrinho" id="fechar-carrinho" aria-label="Fechar carrinho">×</button>
+        </div>
+
+        <div class="itens-carrinho" id="itens-carrinho">
+            <!-- itens inseridos via js/produtos.js -->
+        </div>
+
+        <div class="rodape-carrinho">
+            <div class="linha-subtotal">
+                <span>Subtotal</span>
+                <strong id="valor-subtotal">R$ 0,00</strong>
+            </div>
+            <button class="botao-entrar" id="botao-finalizar">Finalizar pedido</button>
+        </div>
+
+    </aside>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="js/produtos.js"></script>
+
+    <script>
+        // Links do menu que filtram por categoria diretamente
+        document.querySelectorAll('[data-categoria]').forEach(link => {
+            link.addEventListener('click', () => {
+                const categoria = link.dataset.categoria;
+                const botao = document.querySelector(`.filtro-botao[data-filtro="${categoria}"]`);
+                if (botao) botao.click();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
