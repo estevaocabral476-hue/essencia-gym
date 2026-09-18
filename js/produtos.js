@@ -1,13 +1,5 @@
-/* ===========================================================
-   Essência Gym — Catálogo, filtros e carrinho
-   Tenta buscar os produtos da API (banco de dados). Se o
-   backend não estiver rodando, usa o catálogo local abaixo,
-   então o site funciona sozinho e também com o servidor.
-   =========================================================== */
-
 const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
 
-// Catálogo local (espelha os dados semeados no banco em server/db.js)
 const PRODUTOS_LOCAIS = [
     {
         id: 1,
@@ -113,8 +105,6 @@ const estado = {
     carrinho: carregarCarrinho()
 };
 
-/* ---------- Utilidades ---------- */
-
 function formatarPreco(valor) {
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
@@ -149,8 +139,6 @@ function mostrarToast(mensagem) {
     }, 2200);
 }
 
-/* ---------- Busca de produtos (API com fallback local) ---------- */
-
 async function buscarProdutos() {
     try {
         const resposta = await fetch(`${API_BASE}/produtos`);
@@ -169,8 +157,6 @@ async function buscarProdutos() {
 function PRODUTOS_LOCOS_OU_LOCAIS() {
     return PRODUTOS_LOCAIS;
 }
-
-/* ---------- Renderização da vitrine ---------- */
 
 function renderizarProdutos() {
     const grade = document.getElementById('grade-produtos');
@@ -192,7 +178,6 @@ function renderizarProdutos() {
     });
 }
 
-// Cor de destaque conforme o sabor do produto (usada no selo do pote e no rótulo)
 function corDoSabor(sabor) {
     const texto = sabor.toLowerCase();
 
@@ -204,8 +189,6 @@ function corDoSabor(sabor) {
     return '#9c8558';
 }
 
-// Ícones ilustrados próprios (SVG), um desenho por categoria, para não
-// depender de fotos de produtos de terceiros
 function iconeCategoria(categoria, corSabor) {
     const overlay = {
         whey: `
@@ -273,8 +256,6 @@ function criarCartaoProduto(produto) {
     return cartao;
 }
 
-/* ---------- Filtros de categoria ---------- */
-
 function iniciarFiltros() {
     const botoes = document.querySelectorAll('.filtro-botao');
 
@@ -288,8 +269,6 @@ function iniciarFiltros() {
         });
     });
 }
-
-/* ---------- Carrinho ---------- */
 
 function adicionarAoCarrinho(idProduto) {
     const produto = estado.produtos.find(p => String(p.id) === String(idProduto));
@@ -440,8 +419,6 @@ function iniciarCarrinho() {
     renderizarCarrinho();
 }
 
-/* ---------- Finalizar pedido (grava no banco via API) ---------- */
-
 async function finalizarPedido() {
     if (estado.carrinho.length === 0) {
         mostrarToast('Seu carrinho está vazio');
@@ -492,8 +469,6 @@ async function finalizarPedido() {
         botaoFinalizar.disabled = false;
     }
 }
-
-/* ---------- Inicialização ---------- */
 
 document.addEventListener('DOMContentLoaded', () => {
     iniciarFiltros();

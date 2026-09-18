@@ -1,0 +1,114 @@
+const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const form = document.querySelector('.form-cadastro');
+    if (!form) return;
+
+    const campoNome = form.querySelector('#nome');
+    const campoEmail = form.querySelector('#email');
+    const campoSenha = form.querySelector('#senha');
+    const campoConfirmarSenha = form.querySelector('#confirmarSenha');
+
+    form.querySelectorAll('.botao-olho').forEach(botao => {
+        botao.addEventListener('click', () => {
+            const input = botao.closest('.campo-senha').querySelector('input');
+            const visivel = input.type === 'text';
+
+            input.type = visivel ? 'password' : 'text';
+            botao.textContent = visivel ? 'Mostrar' : 'Ocultar';
+        });
+    });
+
+    function marcarInvalido(campoInput, invalido) {
+        const wrapper = campoInput.closest('.campo');
+        wrapper.classList.toggle('invalido', invalido);
+    }
+
+    function validarNome() {
+        const valido = campoNome.value.trim().split(' ').filter(Boolean).length >= 2;
+        marcarInvalido(campoNome, !valido);
+        return valido;
+    }
+
+    function validarEmail() {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const valido = regex.test(campoEmail.value.trim());
+        marcarInvalido(campoEmail, !valido);
+        return valido;
+    }
+
+    function validarSenha() {
+        const valido = campoSenha.value.length >= 6;
+        marcarInvalido(campoSenha, !valido);
+        return valido;
+    }
+
+    function validarConfirmacaoSenha() {
+        const valido = campoConfirmarSenha.value.length > 0 &&
+            campoConfirmarSenha.value === campoSenha.value;
+        marcarInvalido(campoConfirmarSenha, !valido);
+        return valido;
+    }
+
+    campoNome.addEventListener('blur', validarNome);
+    campoEmail.addEventListener('blur', validarEmail);
+    campoSenha.addEventListener('blur', validarSenha);
+    campoConfirmarSenha.addEventListener('blur', validarConfirmacaoSenha);
+
+    form.addEventListener('submit', async (evento) => {
+        evento.preventDefault();
+
+        const nomeValido = validarNome();
+        const emailValido = validarEmail();
+        const senhaValida = validarSenha();
+        const confirmacaoValida = validarConfirmacaoSenha();
+
+        if (!nomeValido || !emailValido || !senhaValida || !confirmacaoValida) {
+            return;
+        }
+
+        const botaoEnviar = form.querySelector('.botao-entrar');
+        const textoOriginal = botaoEnviar.textContent;
+        botaoEnviar.disabled = true;
+        botaoEnviar.textContent = 'Criando conta...';
+
+        try {
+            const resposta = await fetch(`${API_BASE}/cadastro`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nome: campoNome.value.trim(),
+                    email: campoEmail.value.trim(),
+                    senha: campoSenha.value
+                })
+            });
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                if (resposta.status === 409) {
+                    marcarInvalido(campoEmail, true);
+                    campoEmail.closest('.campo').querySelector('.mensagem-erro').textContent =
+                        'Este e-mail já está cadastrado.';
+                }
+                throw new Error(dados.erro || 'Não foi possível criar a conta.');
+            }
+
+            localStorage.setItem('essencia_token', dados.token);
+            localStorage.setItem('essencia_usuario', JSON.stringify(dados.usuario));
+
+            window.location.href = 'index.html';
+
+        } catch (erro) {
+            console.error(erro);
+            alert(erro.message.includes('fetch')
+                ? 'Não foi possível conectar ao servidor. Verifique se o backend (pasta server/) está rodando.'
+                : erro.message);
+        } finally {
+            botaoEnviar.disabled = false;
+            botaoEnviar.textContent = textoOriginal;
+        }
+    });
+
+});

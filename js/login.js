@@ -1,7 +1,3 @@
-/* ===========================================================
-   Essência Gym — Validação e envio do formulário de login
-   =========================================================== */
-
 const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const campoEmail = form.querySelector('#email');
     const campoSenha = form.querySelector('#senha');
 
-    /* ---------- Mostrar / esconder senha ---------- */
-
     form.querySelectorAll('.botao-olho').forEach(botao => {
         botao.addEventListener('click', () => {
             const input = botao.closest('.campo-senha').querySelector('input');
@@ -23,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
             botao.textContent = visivel ? 'Mostrar' : 'Ocultar';
         });
     });
-
-    /* ---------- Validação ---------- */
 
     function marcarInvalido(campoInput, invalido) {
         campoInput.closest('.campo').classList.toggle('invalido', invalido);
@@ -45,8 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     campoEmail.addEventListener('blur', validarEmail);
     campoSenha.addEventListener('blur', validarSenha);
-
-    /* ---------- Envio ---------- */
 
     form.addEventListener('submit', async (evento) => {
         evento.preventDefault();

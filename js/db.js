@@ -1,0 +1,161 @@
+const fs = require('fs');
+const path = require('path');
+const initSqlJs = require('sql.js');
+
+const CAMINHO_BANCO = path.join(__dirname, 'essencia.db');
+
+async function abrirBanco() {
+    const SQL = await initSqlJs();
+
+    let db;
+
+    if (fs.existsSync(CAMINHO_BANCO)) {
+        const arquivoExistente = fs.readFileSync(CAMINHO_BANCO);
+        db = new SQL.Database(arquivoExistente);
+    } else {
+        db = new SQL.Database();
+    }
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS produtos (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            categoria       TEXT    NOT NULL,
+            nome            TEXT    NOT NULL,
+            sabor           TEXT    NOT NULL,
+            descricao       TEXT    NOT NULL,
+            preco           REAL    NOT NULL,
+            preco_antigo    REAL,
+            selo            TEXT,
+            estoque         INTEGER NOT NULL DEFAULT 100
+        );
+
+        CREATE TABLE IF NOT EXISTS usuarios (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome            TEXT    NOT NULL,
+            email           TEXT    NOT NULL UNIQUE,
+            senha_hash      TEXT    NOT NULL,
+            criado_em       TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+
+        CREATE TABLE IF NOT EXISTS pedidos (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario_id      INTEGER,
+            total           REAL    NOT NULL,
+            status          TEXT    NOT NULL DEFAULT 'pendente',
+            criado_em       TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+
+        CREATE TABLE IF NOT EXISTS itens_pedido (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            pedido_id       INTEGER NOT NULL,
+            produto_id      INTEGER NOT NULL,
+            quantidade      INTEGER NOT NULL,
+            preco_unitario  REAL    NOT NULL
+        );
+    `);
+
+    semearProdutos(db);
+    salvar(db);
+
+    return db;
+}
+
+function semearProdutos(db) {
+    const total = um(db, 'SELECT COUNT(*) AS total FROM produtos').total;
+    if (total > 0) return;
+
+    const catalogoInicial = [
+        {
+            categoria: 'whey', nome: 'Whey Protein Concentrado', sabor: 'Chocolate — 900g',
+            descricao: '24g de proteína por dose para recuperação muscular no dia a dia. Ótimo custo-benefício para quem treina com constância.',
+            preco: 129.90, preco_antigo: 149.90, selo: 'Mais vendido', estoque: 60
+        },
+        {
+            categoria: 'whey', nome: 'Whey Protein Isolado', sabor: 'Baunilha — 900g',
+            descricao: 'Baixo teor de lactose e gordura, com absorção rápida. Indicado para quem busca definição e menos inchaço.',
+            preco: 179.90, preco_antigo: null, selo: null, estoque: 45
+        },
+        {
+            categoria: 'whey', nome: 'Whey Protein Hidrolisado', sabor: 'Morango — 900g',
+            descricao: 'Proteína pré-digerida, de absorção ainda mais rápida. Ideal para o pós-treino de quem treina pesado.',
+            preco: 199.90, preco_antigo: null, selo: 'Premium', estoque: 30
+        },
+        {
+            categoria: 'creatina', nome: 'Creatina Monohidratada', sabor: 'Sem sabor — 300g',
+            descricao: 'Aumenta a força e a explosão nos treinos. 100% pura, sem misturas, com absorção comprovada.',
+            preco: 89.90, preco_antigo: null, selo: null, estoque: 80
+        },
+        {
+            categoria: 'creatina', nome: 'Creatina Monohidratada', sabor: 'Sem sabor — 500g',
+            descricao: 'A mesma fórmula pura em pote maior, com custo por dose mais baixo para quem já faz parte da rotina.',
+            preco: 129.90, preco_antigo: 149.90, selo: 'Economia', estoque: 50
+        },
+        {
+            categoria: 'creatina', nome: 'Creatina Creapure', sabor: 'Sem sabor — 300g',
+            descricao: 'Creatina alemã de altíssima pureza, com controle rígido de qualidade. Escolha de quem não abre mão de performance.',
+            preco: 149.90, preco_antigo: null, selo: 'Premium', estoque: 40
+        },
+        {
+            categoria: 'hipercalorico', nome: 'Hipercalórico Mass', sabor: 'Chocolate — 3kg',
+            descricao: 'Carboidratos e proteínas em alta densidade calórica, pensado para quem quer ganhar massa e tem dificuldade de comer o suficiente.',
+            preco: 149.90, preco_antigo: null, selo: null, estoque: 35
+        },
+        {
+            categoria: 'hipercalorico', nome: 'Hipercalórico Titanium', sabor: 'Baunilha — 3kg',
+            descricao: 'Blend de carboidratos de absorção variada com proteína extra, para ganho de peso sem exageros de açúcar.',
+            preco: 169.90, preco_antigo: 189.90, selo: 'Oferta', estoque: 25
+        },
+        {
+            categoria: 'hipercalorico', nome: 'Hipercalórico Extreme Gainer', sabor: 'Cookies — 3kg',
+            descricao: 'Mais calórico da linha, indicado para biotipos que têm muita dificuldade de ganhar peso mesmo comendo bastante.',
+            preco: 189.90, preco_antigo: null, selo: 'Mais calorias', estoque: 20
+        }
+    ];
+
+    catalogoInicial.forEach(p => {
+        executar(db, `
+            INSERT INTO produtos (categoria, nome, sabor, descricao, preco, preco_antigo, selo, estoque)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `, [p.categoria, p.nome, p.sabor, p.descricao, p.preco, p.preco_antigo, p.selo, p.estoque]);
+    });
+
+    console.log(`Banco semeado com ${catalogoInicial.length} produtos.`);
+}
+
+function salvar(db) {
+    const dados = db.export();
+    fs.writeFileSync(CAMINHO_BANCO, Buffer.from(dados));
+}
+
+function todos(db, sql, params = []) {
+    const stmt = db.prepare(sql);
+    stmt.bind(params);
+
+    const linhas = [];
+    while (stmt.step()) {
+        linhas.push(stmt.getAsObject());
+    }
+    stmt.free();
+
+    return linhas;
+}
+
+function um(db, sql, params = []) {
+    return todos(db, sql, params)[0];
+}
+
+function executar(db, sql, params = []) {
+    db.run(sql, params);
+
+    const idResultado = um(db, 'SELECT last_insert_rowid() AS id');
+    const alteracoes = db.getRowsModified();
+
+    salvar(db);
+
+    return {
+        lastInsertRowid: idResultado ? idResultado.id : null,
+        changes: alteracoes
+    };
+}
+
+module.exports = { abrirBanco, salvar, todos, um, executar, CAMINHO_BANCO };
