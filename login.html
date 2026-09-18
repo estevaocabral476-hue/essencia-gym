@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Essência Gym | Entrar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <main class="login-wrap">
+
+        <section class="painel-marca">
+
+            <img
+                src="assets/logo-essencia-gym.png"
+                alt="Logo Essência Gym"
+            >
+
+            <div class="linha-ouro"></div>
+
+            <p class="frase">
+                DISCIPLINA &nbsp;•&nbsp; CONSTÂNCIA &nbsp;•&nbsp; RESULTADOS
+            </p>
+
+        </section>
+
+        <section class="painel-form">
+
+            <form class="form-login" novalidate>
+
+                <h1 class="titulo-form">
+                    Bem-vindo de volta
+                </h1>
+
+                <p class="subtitulo-form">
+                    Entre para acompanhar seus pedidos e treinos.
+                </p>
+
+                <div class="campo" data-tipo="email">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
+                    >
+
+                    <span class="mensagem-erro">
+                        Informe um e-mail válido.
+                    </span>
+
+                </div>
+
+                <div class="campo" data-tipo="senha">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <div class="campo-senha">
+
+                        <input
+                            id="senha"
+                            type="password"
+                            name="senha"
+                            placeholder="Sua senha"
+                            autocomplete="current-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="botao-olho"
+                            aria-label="Mostrar senha"
+                        >
+                            Mostrar
+                        </button>
+
+                    </div>
+
+                    <span class="mensagem-erro">
+                        Informe sua senha.
+                    </span>
+
+                </div>
+
+                <div class="linha-opcoes">
+
+                    <label class="lembrar">
+                        <input type="checkbox" id="lembrar">
+                        Lembrar de mim
+                    </label>
+
+                    <a href="#" class="link-recuperar">
+                        Esqueceu a senha?
+                    </a>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="botao-entrar"
+                >
+                    Entrar
+                </button>
+
+                <button
+                    type="button"
+                    class="botao-entrar botao-secundario"
+                    onclick="window.location.href='index.html'"
+                >
+                    Continuar sem entrar
+                </button>
+
+                <p class="rodape-form">
+
+                    Ainda não tem uma conta?
+
+                    <a href="cadastro.html">
+                        Criar conta
+                    </a>
+
+                </p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
