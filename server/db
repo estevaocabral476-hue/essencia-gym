@@ -1,11 +1,4 @@
-// ===========================================================
-// Essência Gym — Banco de dados (SQLite via sql.js)
-//
-// sql.js é o SQLite compilado em WebAssembly: não precisa de
-// Python, Visual Studio Build Tools nem nada nativo para
-// instalar. O banco fica todo em memória e é salvo em disco
-// (essencia.db) a cada escrita.
-// ===========================================================
+
 
 const fs = require('fs');
 const path = require('path');
