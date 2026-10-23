@@ -1,10 +1,4 @@
-const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const form = document.querySelector('.form-cadastro');
-    if (!form) return;
-
+"use strict";
     const campoNome = form.querySelector('#nome');
     const campoEmail = form.querySelector('#email');
     const campoSenha = form.querySelector('#senha');

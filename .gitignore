@@ -1,0 +1,17 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependências e segredos (nunca envie)
+node_modules/
+.env
+.env.*
+
+# Backups do tutor
+.tutor_backup/
