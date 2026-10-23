@@ -1,0 +1,13 @@
+# Receita do Render (Blueprint): diz ao Render como instalar e ligar o seu web app.
+services:
+  - type: web
+    name: gym
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: ADMIN_TOKEN        # senha do painel: o Render cria uma aleatória (veja em Environment)
+        generateValue: true

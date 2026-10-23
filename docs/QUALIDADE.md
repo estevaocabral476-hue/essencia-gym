@@ -4,15 +4,15 @@ Gerado pelo tutor em 23/10/2026.
 
 | Categoria | Nota |
 |---|---|
-| HTML | 86 (antes: 86) |
-| CSS | 98 (antes: 98) |
-| Responsivo | 98 (antes: 98) |
-| Acessibilidade | 76 (antes: 76) |
-| SEO | 88 (antes: 88) |
-| JavaScript | 68 (antes: 68) |
-| Desempenho | 91 (antes: 91) |
-| Publicação | 72 (antes: 66) |
-| **Geral** | **85** (antes: 84) |
+| HTML | 86 |
+| CSS | 98 |
+| Responsivo | 98 |
+| Acessibilidade | 76 |
+| SEO | 88 |
+| JavaScript | 68 |
+| Desempenho | 91 |
+| Publicação | 72 |
+| **Geral** | **85** |
 
 Erros: 5 · Avisos: 20 · Dicas: 18
 

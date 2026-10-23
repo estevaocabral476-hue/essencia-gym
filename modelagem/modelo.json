@@ -1,0 +1,160 @@
+{
+  "tabelas": [
+    {
+      "nome": "usuarios",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "nome",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "email",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "senha_hash",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    },
+    {
+      "nome": "essencia_tokens",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    },
+    {
+      "nome": "essencia_usuarios",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    },
+    {
+      "nome": "catalogoinicials",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "categoria",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "nome",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "sabor",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "descricao",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "preco",
+          "tipo": "REAL"
+        },
+        {
+          "nome": "preco_antigo",
+          "tipo": "REAL"
+        },
+        {
+          "nome": "selo",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "estoque",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    },
+    {
+      "nome": "essencia_carrinhos",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    },
+    {
+      "nome": "produtos_locais",
+      "colunas": [
+        {
+          "nome": "id",
+          "tipo": "INTEGER",
+          "pk": true
+        },
+        {
+          "nome": "categoria",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "nome",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "sabor",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "descricao",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "preco",
+          "tipo": "REAL"
+        },
+        {
+          "nome": "precoantigo",
+          "tipo": "REAL"
+        },
+        {
+          "nome": "selo",
+          "tipo": "TEXT"
+        },
+        {
+          "nome": "criado_em",
+          "tipo": "DATETIME"
+        }
+      ]
+    }
+  ]
+}

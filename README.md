@@ -154,3 +154,5 @@ No Replit, basta abrir a ferramenta de publicação e clicar em **Publish**. O s
 ## Licença
 
 Este projeto ainda não define uma licença de distribuição. Adicione um arquivo `LICENSE` antes de publicar o código para reutilização por terceiros.
+
+**Site publicado:** https://estevaocabral476-hue.github.io/essencia-gym/

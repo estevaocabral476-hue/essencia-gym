@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel do administrador</title>
+  <meta name="description" content="Painel para ver, criar, editar e apagar os registros do banco de dados.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="painel.css">
+</head>
+<body>
+  <header>
+    <h1>Painel do administrador</h1>
+    <p>Aqui você vê o CRUD funcionando: <strong>C</strong>riar, <strong>R</strong>ler, <strong>U</strong>tualizar e <strong>D</strong>eletar registros.</p>
+  </header>
+  <main>
+    <section aria-labelledby="t-token">
+      <h2 id="t-token">Acesso</h2>
+      <p id="situacao" role="status">Verificando acesso...</p>
+      <form id="form-token" hidden>
+        <label for="token">Token de administrador (variável ADMIN_TOKEN)</label>
+        <input id="token" type="password" autocomplete="off">
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+    <nav id="abas" aria-label="Tabelas"></nav>
+    <section id="area" aria-live="polite"></section>
+  </main>
+  <script src="painel.js" defer></script>
+</body>
+</html>
