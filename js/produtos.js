@@ -1,4 +1,4 @@
-const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
+const API_BASE = window.ESSENCIA_API_BASE || 'https://estevaocabral476-hue.github.io/essencia-gym/';
 
 const PRODUTOS_LOCAIS = [
     {
