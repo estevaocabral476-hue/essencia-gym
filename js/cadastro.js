@@ -1,4 +1,7 @@
-"use strict";
+const API_BASE = window.ESSENCIA_API_BASE || 'http://localhost:3000/api';
+
+document.addEventListener('DOMContentLoaded', () => {
+
     const campoNome = form.querySelector('#nome');
     const campoEmail = form.querySelector('#email');
     const campoSenha = form.querySelector('#senha');
