@@ -1,20 +1,20 @@
 # Relatório de qualidade — gym
 
-Gerado pelo tutor em 23/10/2026.
+Gerado pelo tutor em 26/10/2026.
 
 | Categoria | Nota |
 |---|---|
-| HTML | 86 |
-| CSS | 98 |
-| Responsivo | 98 |
-| Acessibilidade | 76 |
-| SEO | 88 |
-| JavaScript | 68 |
-| Desempenho | 91 |
-| Publicação | 72 |
-| **Geral** | **85** |
+| HTML | 86 (antes: 86) |
+| CSS | 98 (antes: 98) |
+| Responsivo | 98 (antes: 98) |
+| Acessibilidade | 76 (antes: 76) |
+| SEO | 88 (antes: 88) |
+| JavaScript | 68 (antes: 68) |
+| Desempenho | 91 (antes: 91) |
+| Publicação | 90 (antes: 66) |
+| **Geral** | **87** (antes: 84) |
 
-Erros: 5 · Avisos: 20 · Dicas: 18
+Erros: 2 · Avisos: 20 · Dicas: 18
 
 ## [C14] Contraste insuficiente entre texto e fundo (erro)
 
@@ -31,14 +31,6 @@ Onde: css/login.css:105 (.painel-marca .frase: #8a8578 sobre #ffffff = 3.68:1)
 **Como corrigir:** Use textContent para texto e createElement/appendChild (como no JS Relâmpago). Se precisar mesmo de HTML, sanitize (DOMPurify).
 
 Onde: js/produtos.js:233 (cartao.innerHTML = `)
-
-## [S12] Link para localhost / 127.0.0.1 (erro)
-
-**Por quê:** Aponta para o computador de quem visita, não para o seu.
-
-**Como corrigir:** Troque por caminho relativo ou pelo endereço real publicado.
-
-Onde: js/cadastro.js:1 (http://localhost:3000/api); js/login.js:1 (http://localhost:3000/api); js/produtos.js:1 (http://localhost:3000/api)
 
 ## [E01] Falta <meta name="description"> (aviso)
 
