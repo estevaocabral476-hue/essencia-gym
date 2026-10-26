@@ -11,3 +11,5 @@ services:
         value: "3.12.7"
       - key: ADMIN_TOKEN        # senha do painel: o Render cria uma aleatória (veja em Environment)
         generateValue: true
+      - key: DATABASE_URL      # cole aqui, no painel do Render, a string de conexão do Supabase (não escreva no arquivo!)
+        sync: false
