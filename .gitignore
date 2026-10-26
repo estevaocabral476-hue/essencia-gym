@@ -24,3 +24,7 @@ __pycache__/
 *.db
 *.sqlite3
 .env
+.venv/
+*.db
+node_modules/
+.env
